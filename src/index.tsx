@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { MetaMaskProvider } from '@metamask/sdk-react';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -9,7 +10,21 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <MetaMaskProvider
+      debug={true}
+      sdkOptions={{
+        logging: {
+          developerMode: false,
+        },
+        checkInstallationImmediately: false,
+        dappMetadata: {
+          name: 'Demo React App',
+          url: window.location.host,
+        },
+      }}
+    >
+      <App />
+    </MetaMaskProvider>
   </React.StrictMode>
 );
 
